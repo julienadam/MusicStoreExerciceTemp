@@ -1,0 +1,21 @@
+﻿@model CustomerCreateViewModel
+
+<form asp-controller="Customer" asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input class="form-control" asp-for="Email" placeholder="Enter email">
+    </div>
+ <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input class="form-control" asp-for="FirstName">
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label"></label>
+        <input class="form-control" asp-for="LastName">
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success" value="Créer" />
+        <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Annuler</a>
+    </div>
+</form>

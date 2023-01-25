@@ -1,0 +1,13 @@
+﻿@using MusicStore.Entities
+@model IEnumerable<Customer>
+
+    <ul>
+@foreach(var customer in Model)
+{
+    <li>@customer.FirstName @customer.LastName (@customer.Email)</li>
+}
+</ul>
+
+<hr />
+
+<a asp-action="Create">Nouvel utilisateur</a>
