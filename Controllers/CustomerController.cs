@@ -27,17 +27,29 @@ public class CustomerController : Controller
     [HttpPost]
     public IActionResult Create(CustomerCreateViewModel model)
     {
-        var customer = new Customer
+        if(repository.IsEmailTaken(model.Email))
         {
-            Email = model.Email,
-            FirstName = model.FirstName,
-            LastName = model.LastName,
-            // ...
-        };
-        repository.CreateCustomer(customer);
+            ModelState.AddModelError("Email", "Email déja utilisé");
+        }
 
-        // Redirection vers la page de liste des clients
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            var customer = new Customer
+            {
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                // ...
+            };
+            repository.CreateCustomer(customer);
+
+            // Redirection vers la page de liste des clients
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return View(model);
+        }
     }
 
 

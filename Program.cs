@@ -1,11 +1,13 @@
 using MusicStore.Controllers;
 using MusicStore.Domain;
+using MusicStore.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
+builder.Services.AddDbContext<ChinookContext>();
+builder.Services.AddScoped<ICustomerRepository, DbCustomerRepository>();
 
 var app = builder.Build();
 
